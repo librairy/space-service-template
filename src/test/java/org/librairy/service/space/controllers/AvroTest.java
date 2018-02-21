@@ -33,7 +33,7 @@ public class AvroTest {
 
         client.open(host,port);
 
-        Point point = Point.newBuilder().setId("id").setName("name").setDescription("description").setType("type").setShape(Arrays.asList(new Double[]{0.1,0.2})).build();
+        Point point = Point.newBuilder().setId("id").setName("name").setType("type").setShape(Arrays.asList(new Double[]{0.1,0.2})).build();
 
         client.add(point);
 

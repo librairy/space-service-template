@@ -27,7 +27,7 @@ public class MyServiceTest {
     @Test
     public void add() throws IOException {
 
-        Point point = Point.newBuilder().setId("id").setName("name").setDescription("description").setType("type").setShape(Arrays.asList(new Double[]{0.1,0.2})).build();
+        Point point = Point.newBuilder().setId("id").setName("name").setType("type").setShape(Arrays.asList(new Double[]{0.1,0.2})).build();
 
         boolean result = service.add(point);
 

@@ -56,7 +56,7 @@ public class RestTest {
     @Ignore
     public void post() throws UnirestException {
 
-        Point req = new Point(org.librairy.service.space.facade.model.Point.newBuilder().setId("id").setName("name").setDescription("description").setType("type").setShape(Arrays.asList(new Double[]{0.1,0.2})).build());
+        Point req = new Point(org.librairy.service.space.facade.model.Point.newBuilder().setId("id").setName("name").setType("type").setShape(Arrays.asList(new Double[]{0.1,0.2})).build());
 
         HttpResponse<JsonNode> response = Unirest.post("http://localhost:7777/points")
                 .header("accept", "application/json")
