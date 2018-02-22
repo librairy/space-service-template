@@ -45,7 +45,7 @@ public class RestPointsController {
     @RequestMapping(value = "/points", method = RequestMethod.POST, produces = "application/json")
     public Boolean add(@RequestBody Point point)  {
         try {
-            return service.add(point);
+            return service.addPoint(point);
         } catch (AvroRemoteException e) {
             throw new RuntimeException(e);
         }
@@ -58,7 +58,7 @@ public class RestPointsController {
     @RequestMapping(value = "/points/{id:.+}", method = RequestMethod.GET, produces = "application/json")
     public Point get(@PathVariable("id") String id)  {
         try {
-            return new Point(service.get(id));
+            return new Point(service.getPoint(id));
         } catch (AvroRemoteException e) {
             throw new RuntimeException(e);
         }
@@ -71,7 +71,7 @@ public class RestPointsController {
     @RequestMapping(value = "/points/{id:.+}", method = RequestMethod.DELETE, produces = "application/json")
     public Boolean remove(@PathVariable String id)  {
         try {
-            return service.remove(id);
+            return service.removePoint(id);
         } catch (AvroRemoteException e) {
             throw new RuntimeException(e);
         }
@@ -97,7 +97,7 @@ public class RestPointsController {
     @RequestMapping(value = "/points", method = RequestMethod.GET, produces = "application/json")
     public PointList list(@RequestParam Integer size, @RequestParam String offset)  {
         try {
-            return new PointList(service.list(size,offset).stream().map(p -> new org.librairy.service.space.rest.model.Point(p)).collect(Collectors.toList()));
+            return new PointList(service.listPoints(size,offset).stream().map(p -> new org.librairy.service.space.rest.model.Point(p)).collect(Collectors.toList()));
         } catch (AvroRemoteException e) {
             throw new RuntimeException(e);
         }
@@ -110,7 +110,7 @@ public class RestPointsController {
     @RequestMapping(value = "/points/{id:.+}/neighbours", method = RequestMethod.GET, produces = "application/json")
     public NeighbourList neighbours(@PathVariable("id") String id, @RequestParam Integer number, @RequestParam String type)  {
         try {
-            return new NeighbourList(service.neighbours(id,number,type).stream().map(p -> new org.librairy.service.space.rest.model.Neighbour(p)).collect(Collectors.toList()));
+            return new NeighbourList(service.getNeighbours(id,number,type).stream().map(p -> new org.librairy.service.space.rest.model.Neighbour(p)).collect(Collectors.toList()));
         } catch (AvroRemoteException e) {
             throw new RuntimeException(e);
         }

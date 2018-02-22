@@ -50,4 +50,17 @@ public class RestSpacesController {
         }
     }
 
+    @ApiOperation(value = "check if points have been indexed", nickname = "getIndex", response=Boolean.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success", response = Boolean.class),
+    })
+    @RequestMapping(method = RequestMethod.GET, produces = "application/json")
+    public Boolean isIndexed()  {
+        try {
+            return service.isIndexed();
+        } catch (AvroRemoteException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

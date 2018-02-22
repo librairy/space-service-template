@@ -35,19 +35,19 @@ public class MyService implements SpaceService {
 
 
     @Override
-    public boolean add(Point point) throws AvroRemoteException {
+    public boolean addPoint(Point point) throws AvroRemoteException {
         //TODO
         return false;
     }
 
     @Override
-    public Point get(String s) throws AvroRemoteException {
+    public Point getPoint(String s) throws AvroRemoteException {
         //TODO
         return null;
     }
 
     @Override
-    public boolean remove(String s) throws AvroRemoteException {
+    public boolean removePoint(String s) throws AvroRemoteException {
         //TODO
         return false;
     }
@@ -59,7 +59,7 @@ public class MyService implements SpaceService {
     }
 
     @Override
-    public List<Point> list(int i, String s) throws AvroRemoteException {
+    public List<Point> listPoints(int i, String s) throws AvroRemoteException {
         //TODO
         return Collections.emptyList();
     }
@@ -71,13 +71,19 @@ public class MyService implements SpaceService {
     }
 
     @Override
-    public List<Neighbour> neighbours(String s, int i, String s1) throws AvroRemoteException {
+    public boolean isIndexed() throws AvroRemoteException {
+        //TODO
+        return false;
+    }
+
+    @Override
+    public List<Neighbour> getNeighbours(String s, int i, String s1) throws AvroRemoteException {
         //TODO
         return Collections.emptyList();
     }
 
     @Override
-    public List<Neighbour> similar(List<Double> list, int i, String s) throws AvroRemoteException {
+    public List<Neighbour> getSimilar(List<Double> list, int i, String s) throws AvroRemoteException {
         //TODO
         return Collections.emptyList();
     }
