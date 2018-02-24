@@ -97,7 +97,8 @@ public class RestPointsController {
     @RequestMapping(value = "/points", method = RequestMethod.GET, produces = "application/json")
     public PointList list(@RequestParam Integer size, @RequestParam String offset)  {
         try {
-            return new PointList(service.listPoints(size,offset).stream().map(p -> new org.librairy.service.space.rest.model.Point(p)).collect(Collectors.toList()));
+            org.librairy.service.space.facade.model.PointList points = service.listPoints(size, offset);
+            return new PointList(points.getNextPage(), points.getPoints().stream().map(p -> new org.librairy.service.space.rest.model.Point(p)).collect(Collectors.toList()));
         } catch (AvroRemoteException e) {
             throw new RuntimeException(e);
         }
