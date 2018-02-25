@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.apache.avro.AvroRemoteException;
 import org.librairy.service.space.rest.model.NeighbourList;
+import org.librairy.service.space.rest.model.NeighboursRequest;
 import org.librairy.service.space.rest.model.Point;
 import org.librairy.service.space.rest.model.PointList;
 import org.librairy.service.space.services.MyService;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
@@ -108,10 +110,10 @@ public class RestPointsController {
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success", response = NeighbourList.class),
     })
-    @RequestMapping(value = "/points/{id:.+}/neighbours", method = RequestMethod.GET, produces = "application/json")
-    public NeighbourList neighbours(@PathVariable("id") String id, @RequestParam Integer number, @RequestParam String type)  {
+    @RequestMapping(value = "/points/{id:.+}/neighbours", method = RequestMethod.POST, produces = "application/json")
+    public NeighbourList neighbours(@PathVariable("id") String id, @RequestBody NeighboursRequest request)  {
         try {
-            return new NeighbourList(service.getNeighbours(id,number,type).stream().map(p -> new org.librairy.service.space.rest.model.Neighbour(p)).collect(Collectors.toList()));
+            return new NeighbourList(service.getNeighbours(id,request.getNumber(),request.getTypes()).stream().map(p -> new org.librairy.service.space.rest.model.Neighbour(p)).collect(Collectors.toList()));
         } catch (AvroRemoteException e) {
             throw new RuntimeException(e);
         }

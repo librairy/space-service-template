@@ -83,13 +83,13 @@ public class MyService implements SpaceService {
     }
 
     @Override
-    public List<Neighbour> getNeighbours(String s, int i, String s1) throws AvroRemoteException {
+    public List<Neighbour> getNeighbours(String s, int i, List<String> s1) throws AvroRemoteException {
         //TODO
         return Collections.emptyList();
     }
 
     @Override
-    public List<Neighbour> getSimilar(List<Double> list, int i, String s) throws AvroRemoteException {
+    public List<Neighbour> getSimilar(List<Double> list, int i, List<String> s) throws AvroRemoteException {
         //TODO
         return Collections.emptyList();
     }
