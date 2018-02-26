@@ -113,7 +113,7 @@ public class RestPointsController {
     @RequestMapping(value = "/points/{id:.+}/neighbours", method = RequestMethod.POST, produces = "application/json")
     public NeighbourList neighbours(@PathVariable("id") String id, @RequestBody NeighboursRequest request)  {
         try {
-            return new NeighbourList(service.getNeighbours(id,request.getNumber(),request.getTypes()).stream().map(p -> new org.librairy.service.space.rest.model.Neighbour(p)).collect(Collectors.toList()));
+            return new NeighbourList(service.getNeighbours(id,request.getNumber(),request.getTypes(), request.getForce()).stream().map(p -> new org.librairy.service.space.rest.model.Neighbour(p)).collect(Collectors.toList()));
         } catch (AvroRemoteException e) {
             throw new RuntimeException(e);
         }
